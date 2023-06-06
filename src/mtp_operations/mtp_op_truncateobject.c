@@ -20,7 +20,7 @@
 /**
  * @file   mtp_op_truncateobject.c
  * @brief  truncate object operation.
- * @author Jean-François DEL NERO <Jean-Francois.DELNERO@viveris.fr>
+ * @author Jean-Franï¿½ois DEL NERO <Jean-Francois.DELNERO@viveris.fr>
  */
 
 #include "buildconf.h"
@@ -36,6 +36,8 @@
 #include "mtp_helpers.h"
 #include "mtp_constant.h"
 #include "mtp_operations.h"
+
+#include "tvt_hooks.h"
 
 uint32_t mtp_op_TruncateObject(mtp_ctx * ctx,MTP_PACKET_HEADER * mtp_packet_hdr, int * size,uint32_t * ret_params, int * ret_params_size)
 {
@@ -56,6 +58,9 @@ uint32_t mtp_op_TruncateObject(mtp_ctx * ctx,MTP_PACKET_HEADER * mtp_packet_hdr,
 	offset = peek64(mtp_packet_hdr, sizeof(MTP_PACKET_HEADER) + 4, 8);   // Get param 2 - Offset in bytes
 
 	entry = get_entry_by_handle(ctx->fs_db, handle);
+
+	tvt_log_fs_access("TRUNCATE OBJECT:", ctx, entry);
+	
 	if( entry )
 	{
 

@@ -1,3 +1,4 @@
+CC:=/home/jare/Desktop/zara/zara_buildroot2/prebuilts/toolchains/mips-gcc720-glibc229/bin/mips-linux-gnu-gcc
 
 override CFLAGS += -I./inc -lpthread -Wall -O3
 

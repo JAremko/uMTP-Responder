@@ -20,7 +20,7 @@
 /**
  * @file   mtp_op_getobject.c
  * @brief  get object operation
- * @author Jean-François DEL NERO <Jean-Francois.DELNERO@viveris.fr>
+ * @author Jean-Franï¿½ois DEL NERO <Jean-Francois.DELNERO@viveris.fr>
  */
 
 #include "buildconf.h"
@@ -34,8 +34,11 @@
 #include "mtp_constant.h"
 #include "mtp_operations.h"
 #include "mtp_ops_helpers.h"
+#include "tvt_hooks.h"
 
 #include "logs_out.h"
+
+#include <stdio.h>
 
 uint32_t mtp_op_GetObject(mtp_ctx * ctx,MTP_PACKET_HEADER * mtp_packet_hdr, int * size,uint32_t * ret_params, int * ret_params_size)
 {
@@ -52,6 +55,9 @@ uint32_t mtp_op_GetObject(mtp_ctx * ctx,MTP_PACKET_HEADER * mtp_packet_hdr, int 
 
 	handle = peek(mtp_packet_hdr, sizeof(MTP_PACKET_HEADER), 4); // Get param 1 - object handle
 	entry = get_entry_by_handle(ctx->fs_db, handle);
+
+	tvt_log_fs_access("GET OBJECT:", ctx, entry);
+
 	if(entry)
 	{
 		if( check_handle_access( ctx, entry, handle, 0, &response_code) )

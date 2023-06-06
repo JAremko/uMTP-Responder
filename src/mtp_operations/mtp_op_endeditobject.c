@@ -20,7 +20,7 @@
 /**
  * @file   mtp_op_endeditobject.c
  * @brief  End edit object operation
- * @author Jean-François DEL NERO <Jean-Francois.DELNERO@viveris.fr>
+ * @author Jean-Franï¿½ois DEL NERO <Jean-Francois.DELNERO@viveris.fr>
  */
 
 #include "buildconf.h"
@@ -32,6 +32,8 @@
 #include "mtp_helpers.h"
 #include "mtp_constant.h"
 #include "mtp_operations.h"
+
+#include "tvt_hooks.h"
 
 #include "logs_out.h"
 

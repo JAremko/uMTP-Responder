@@ -20,7 +20,7 @@
 /**
  * @file   mtp_op_deleteobject.c
  * @brief  Delete object operation
- * @author Jean-François DEL NERO <Jean-Francois.DELNERO@viveris.fr>
+ * @author Jean-Franï¿½ois DEL NERO <Jean-Francois.DELNERO@viveris.fr>
  */
 
 #include "buildconf.h"
@@ -35,6 +35,8 @@
 #include "mtp_ops_helpers.h"
 
 #include "logs_out.h"
+
+#include "tvt_hooks.h"
 
 uint32_t mtp_op_DeleteObject(mtp_ctx * ctx,MTP_PACKET_HEADER * mtp_packet_hdr, int * size,uint32_t * ret_params, int * ret_params_size)
 {
@@ -59,6 +61,9 @@ uint32_t mtp_op_DeleteObject(mtp_ctx * ctx,MTP_PACKET_HEADER * mtp_packet_hdr, i
 	response_code = MTP_RESPONSE_OBJECT_WRITE_PROTECTED;
 
 	entry = get_entry_by_handle(ctx->fs_db, handle);
+
+	tvt_log_fs_access("DELETE OBJECT:", ctx, entry);
+
 	if(entry)
 	{
 		if(!set_storage_giduid(ctx, entry->storage_id))

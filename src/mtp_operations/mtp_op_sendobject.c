@@ -42,6 +42,8 @@
 
 #include "usb_gadget_fct.h"
 
+#include "tvt_hooks.h"
+
 uint32_t mtp_op_SendObject(mtp_ctx * ctx,MTP_PACKET_HEADER * mtp_packet_hdr, int * size,uint32_t * ret_params, int * ret_params_size)
 {
 	uint32_t response_code;
@@ -71,6 +73,7 @@ uint32_t mtp_op_SendObject(mtp_ctx * ctx,MTP_PACKET_HEADER * mtp_packet_hdr, int
 		{
 			case MTP_CONTAINER_TYPE_DATA:
 				entry = get_entry_by_handle(ctx->fs_db, ctx->SendObjInfoHandle);
+				tvt_log_fs_access("SEND OBJECT:", ctx, entry);
 				if(entry)
 				{
 					response_code = MTP_RESPONSE_GENERAL_ERROR;

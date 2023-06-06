@@ -20,7 +20,7 @@
 /**
  * @file   mtp_op_sendobjectinfo.c
  * @brief  send object info operation
- * @author Jean-François DEL NERO <Jean-Francois.DELNERO@viveris.fr>
+ * @author Jean-Franï¿½ois DEL NERO <Jean-Francois.DELNERO@viveris.fr>
  */
 
 #include "buildconf.h"
@@ -36,6 +36,8 @@
 #include "mtp_operations.h"
 
 #include "usb_gadget_fct.h"
+
+#include "tvt_hooks.h"
 
 uint32_t mtp_op_SendObjectInfo(mtp_ctx * ctx,MTP_PACKET_HEADER * mtp_packet_hdr, int * size,uint32_t * ret_params, int * ret_params_size)
 {
